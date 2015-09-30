@@ -37,7 +37,7 @@ public class ActionsAdapter extends ArrayAdapter<Action> {
         TextView tvName = (TextView) convertView.findViewById(R.id.tvAdapterNameOfPerson);
 
         // Populate the data into the template view using the data object
-        tvAction.setText(action.action);
+        tvAction.setText(action.action + " - ");
         tvName.setText(action.nameOfPerson);
         // Return the completed view to render on screen
         return convertView;

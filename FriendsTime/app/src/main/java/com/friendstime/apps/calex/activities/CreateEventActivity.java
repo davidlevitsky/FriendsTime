@@ -10,13 +10,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -125,7 +128,7 @@ public class CreateEventActivity extends ActionBarActivity
        // mBtAddInHonor = (ImageButton) findViewById(R.id.btAddInHonor);
         allContacts = new ContactFetcher(getApplicationContext()).fetchAll();
         Toast toast = Toast.makeText(this, Integer.toString(allContacts.size()), Toast.LENGTH_LONG);
-        toast.show();
+        //toast.show();
 
         mBtActions = (Button)  findViewById(R.id.btActions);
         mBtNotes = (Button)  findViewById(R.id.btNotes);
@@ -154,7 +157,7 @@ public class CreateEventActivity extends ActionBarActivity
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         // Disallow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -168,18 +171,23 @@ public class CreateEventActivity extends ActionBarActivity
                 return true;
             }
         });
+        setListViewHeightBasedOnChildren(mLvParticipants);
 
         String name = getIntent().getStringExtra("name");
         String dateFrom = getIntent().getStringExtra("dateFrom");
         String dateTo = getIntent().getStringExtra("dateTo");
-        //String startTime = getIntent().getStringExtra("startTime");
-        //String endTime = getIntent().getStringExtra("endTime");
+        String startTime = getIntent().getStringExtra("startTime");
+        String endTime = getIntent().getStringExtra("endTime");
         if (name != null){
             mTvEventName.setText(name);
         }
         if (dateFrom != null) {
             mTvDateFrom.setText(dateFrom);
             mTvDateTo.setText(dateTo);
+        }
+        if (startTime != null){
+            mTvTimeFrom.setText(startTime);
+            mTvTimeTo.setText(endTime);
         }
         arrayOfNotes = new ArrayList<String>();
         ArrayList<String> arrayOfNotesEdited = getIntent().getStringArrayListExtra("notes");
@@ -198,7 +206,7 @@ public class CreateEventActivity extends ActionBarActivity
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         // Disallow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -212,6 +220,7 @@ public class CreateEventActivity extends ActionBarActivity
                 return true;
             }
         });
+        setListViewHeightBasedOnChildren(mLvNotes);
 
         mOccasionAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, m_occasions);
@@ -228,12 +237,13 @@ public class CreateEventActivity extends ActionBarActivity
             mArrayActions = editedActions;
         }
         mActionAdapter = new ActionsAdapter(this, mArrayActions);
+        setListViewHeightBasedOnChildren(mlvActions);
         mlvActions.setAdapter(mActionAdapter);
         mlvActions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ArrayList<String> testArray = new ArrayList<String>();
-                for (Contact contact : mFilteredContactsArray){
+                for (Contact contact : mFilteredContactsArray) {
                     testArray.add(contact.name);
                 }
                 Action someAction = mArrayActions.get(position);
@@ -250,7 +260,7 @@ public class CreateEventActivity extends ActionBarActivity
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         // Disallow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -264,6 +274,7 @@ public class CreateEventActivity extends ActionBarActivity
                 return true;
             }
         });
+
 
 /*        mBtAddInHonor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -624,4 +635,27 @@ public class CreateEventActivity extends ActionBarActivity
 
         }
     }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, AbsListView.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
+
 }

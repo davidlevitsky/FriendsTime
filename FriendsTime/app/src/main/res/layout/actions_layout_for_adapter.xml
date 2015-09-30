@@ -13,13 +13,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="20dp" />
+        android:textSize="12sp" />
 
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done?"
         android:id="@+id/cbAdapterTaskCompleted"
         android:checked="false"
         android:layout_alignParentTop="true"
@@ -33,7 +32,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/tvAdapterNameOfPerson"
-        android:textSize="20dp"
+        android:textSize="12sp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/tvAdapterActionName"
         android:layout_toEndOf="@+id/tvAdapterActionName" />

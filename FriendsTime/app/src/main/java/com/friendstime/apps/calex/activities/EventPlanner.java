@@ -83,7 +83,7 @@ public class EventPlanner extends SingleFragmentActivity
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Toast toast = Toast.makeText(getApplicationContext(), "eventplanner NOT FRAG", Toast.LENGTH_SHORT);
-        toast.show();
+        //toast.show();
         if (resultCode == RESULT_CANCELED){
             return;
         }

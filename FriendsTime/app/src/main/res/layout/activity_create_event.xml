@@ -19,7 +19,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -325,8 +325,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignLeft="@+id/btNotes"
             android:layout_alignStart="@+id/btNotes"
-            android:layout_above="@+id/btClear"
-            android:choiceMode="none" />
+            android:choiceMode="none"
+            android:layout_alignBottom="@+id/lvActions" />
 
         <ListView
             android:layout_width="wrap_content"
