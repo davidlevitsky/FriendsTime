@@ -1,8 +1,6 @@
-package com.friendstime.apps.calex.activities;
+package com.friendstime.apps.calex.model;
 
 import android.widget.ImageButton;
-
-import com.friendstime.apps.calex.model.Contact;
 
 import java.util.ArrayList;
 

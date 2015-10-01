@@ -1,13 +1,11 @@
-package com.friendstime.apps.calex.activities;
-
-import com.friendstime.apps.calex.model.Contact;
+package com.friendstime.apps.calex.model;
 
 import java.util.ArrayList;
 
 /**
  * Created by David on 8/15/2015.
  */
-public class CreatedEventSublist extends SuperCreate{
+public class CreatedEventSublist extends SuperCreate {
 
     public CreatedEventSublist(String eventName, String dateFrom, String dateTo, String startTime, String endTime, String eventDescription, ArrayList<String> notes, ArrayList<Action> actions, ArrayList<Contact> participants)
     {

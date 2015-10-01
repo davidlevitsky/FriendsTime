@@ -137,7 +137,7 @@
         </receiver>
 
         <activity
-            android:name=".activities.CreatedEventDisplay"
+            android:name=".model.CreatedEventDisplay"
             android:label="@string/title_activity_created_event_display" >
         </activity>
     </application>

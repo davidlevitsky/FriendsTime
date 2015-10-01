@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.friendstime.apps.calex.R;
-import com.friendstime.apps.calex.activities.SuperCreate;
+import com.friendstime.apps.calex.model.SuperCreate;
 
 import java.util.ArrayList;
 

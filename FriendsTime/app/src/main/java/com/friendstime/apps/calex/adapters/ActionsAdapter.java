@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.friendstime.apps.calex.R;
-import com.friendstime.apps.calex.activities.Action;
+import com.friendstime.apps.calex.model.Action;
 
 import java.util.ArrayList;
 

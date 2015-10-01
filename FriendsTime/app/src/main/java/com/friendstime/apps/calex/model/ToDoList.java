@@ -1,4 +1,4 @@
-package com.friendstime.apps.calex.activities;
+package com.friendstime.apps.calex.model;
 
 /**
  * Created by David on 8/17/2015.

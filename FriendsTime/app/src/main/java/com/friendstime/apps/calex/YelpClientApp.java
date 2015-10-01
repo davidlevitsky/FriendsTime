@@ -3,7 +3,7 @@ package com.friendstime.apps.calex;
 import android.content.Context;
 import android.util.Log;
 
-import com.friendstime.apps.calex.activities.Action;
+import com.friendstime.apps.calex.model.Action;
 import com.friendstime.apps.calex.model.Contact;
 import com.friendstime.apps.calex.model.ParseClient;
 import com.friendstime.apps.calex.model.YelpClient;

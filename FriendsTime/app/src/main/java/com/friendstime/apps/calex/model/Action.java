@@ -1,4 +1,4 @@
-package com.friendstime.apps.calex.activities;
+package com.friendstime.apps.calex.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

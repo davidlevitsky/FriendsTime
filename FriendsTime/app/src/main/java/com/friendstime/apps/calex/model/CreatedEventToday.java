@@ -1,6 +1,4 @@
-package com.friendstime.apps.calex.activities;
-
-import com.friendstime.apps.calex.model.Contact;
+package com.friendstime.apps.calex.model;
 
 import java.util.ArrayList;
 
